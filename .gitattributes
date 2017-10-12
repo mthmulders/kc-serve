@@ -4,3 +4,4 @@
 *.png binary
 *.ttf binary
 *.jpg binary
+package-lock.json binary
