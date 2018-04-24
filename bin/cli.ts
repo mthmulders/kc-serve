@@ -4,7 +4,7 @@
 process.title = 'kc-serve';
 import serve from '../src/Index';
 import * as path from 'path';
-import * as opn from 'opn';
+const  opn = require('opn');
 const debug = require('debug')('kc:cli');
 
 const argv = require('minimist')(process.argv.slice(2), {

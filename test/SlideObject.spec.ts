@@ -3,8 +3,9 @@ import { expect } from 'chai';
 import { Slide, SlideFolder, SlideConvert } from '../src/SlideObject';
 
 describe('SlideObject', () => {
-    it('should wrap a file into an object', () =>
-        expect(new Slide('01-intro.md').name).to.eq('01-intro.md'));
+    it('should wrap a file into an object', () => {
+        expect(new Slide('01-intro.md').name).to.eq('01-intro.md');
+    });
 
     it('should report markdown', () => {
         expect(new Slide('01-intro.md').isMarkdown).to.be.true;
@@ -25,7 +26,7 @@ describe('SlideObject', () => {
     describe('isImage', () => {
 
         ['bower.png', 'questionmark.gif', 'photo.jpg', 'photo.jpeg', 'photo.svg'].forEach(file => {
-            it(`${path.extname(file)} should be an image`, () => expect(new Slide(file).isImage).to.be.true);
+            it(`${path.extname(file)} should be an image`, () => { expect(new Slide(file).isImage).to.be.true; });
         });
 
         it('zip should not be an image', () => {
