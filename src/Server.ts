@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as http from 'http';
+import { AddressInfo } from 'net';
 
 export interface ServerPlugin {
     path: string;
@@ -22,7 +23,7 @@ export default class Server {
             this.server.on('error', e => reject(e));
 
             this.server.listen(port, () =>
-                resolve(`http://localhost:${this.server.address().port}/`));
+                resolve(`http://localhost:${(<AddressInfo>this.server.address()).port}/`));
         });
     }
 
