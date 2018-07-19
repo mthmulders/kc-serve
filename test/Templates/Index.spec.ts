@@ -23,4 +23,8 @@ describe('Template', () => {
         // Using \s and \S because in JavaScript the . does not match newlines (http://stackoverflow.com/a/1068308/129269)
         expect(await new template('test', parts).render()).to.match(/<body>[\s\S]*CUSTOM BODY[\s\S]*<\/body>/i);
     });
+
+    it('includes the doctype', async () => {
+        expect(await new template('doctype', []).render()).to.match(/^<!doctype html>\n<html/);
+    });
 });
