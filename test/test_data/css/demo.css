@@ -1,0 +1,20 @@
+.footer {
+    background-color: gray;
+    bottom: 1em;
+    color: red;
+    height: 3em;
+    position: absolute; 
+    width: 100%;
+}
+
+.footer span {
+    position: absolute; 
+    left: 50%;
+    bottom: 1em;
+}
+
+.footer img {
+    position: absolute;
+    left: 0;
+    bottom: 1em;
+}

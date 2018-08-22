@@ -1,6 +1,7 @@
 import CustomCss from './plugins/CustomCss';
 import HighlightPlugin from './plugins/Highlight';
 import ImgPlugin from './plugins/Img';
+import FooterPlugin from './plugins/Footer';
 import RevealPlugin from './plugins/Reveal';
 import SlidesPlugin from './plugins/Slides';
 import TemplatePlugin from './plugins/Template';
@@ -12,6 +13,7 @@ import CustomCssTemplate from './template/CustomCss';
 import * as RevealTemplate from './template/Reveal';
 import ThemeTemplate from './template/Theme';
 import HighlightTemplate from './template/Highlight';
+import FooterTemplate from './template/Footer';
 
 import Server from './Server';
 
@@ -20,6 +22,7 @@ export interface Options {
     title: string;
     theme: string;
     highlight: string;
+    footer?: string;
 }
 
 export default function (options: Options): Server {
@@ -29,6 +32,7 @@ export default function (options: Options): Server {
     let slidesPlugin = new SlidesPlugin(options.cwd);
     let themePlugin = new ThemePlugin(options.theme);
     let imgPlugin = new ImgPlugin(options.cwd);
+    const footerPlugin = new FooterPlugin(options.footer);
 
     let index = new IndexTemplate(options.title,
         [
@@ -38,6 +42,7 @@ export default function (options: Options): Server {
             new CustomCssTemplate(cssPlugin, cssPlugin.path),
             new RevealTemplate.PdfScript(revealPlugin.path),
             new SlidesTemplate(slidesPlugin, slidesPlugin.path),
+            new FooterTemplate(footerPlugin),
             new RevealTemplate.MainScript(revealPlugin.path)
         ]);
     let templatePlugin = new TemplatePlugin(index);
