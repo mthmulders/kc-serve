@@ -32,7 +32,8 @@ try {
         cwd: process.cwd(), 
         title: 'title',
         theme: 'beige', // or a package
-        highlight: 'darkula.css'
+        highlight: 'darkula.css',
+        footer: './my-footer.html'
     }).listen(port)
     .then(url => console.log(url))
     .catch(err => console.error(err.message));
@@ -57,6 +58,7 @@ option          | description
   --highlight   | resolve to highlight.js style
   --port        | serve from specified port
   --no-open     | don't open presentation in browser
+  --footer      | resolve to markup to be included in footer of every slide
 
   * Pick a highlight style from [demo](https://highlightjs.org/static/demo/)
     or use the css file name from [source](https://github.com/isagalaev/highlight.js/tree/master/src/styles)

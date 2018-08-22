@@ -8,31 +8,33 @@ const  opn = require('opn');
 const debug = require('debug')('kc:cli');
 
 const argv = require('minimist')(process.argv.slice(2), {
-    string: ['theme', 'highlight'],
+    string: ['theme', 'highlight', 'footer'],
     boolean: ['open', 'help'],
     number: ['port'],
     alias: {
         t: 'theme',
         h: 'highlight',
         o: 'open',
-        p: 'port'
+        p: 'port',
+        f: 'footer'
     },
     default: {
         open: true,
         theme: 'reveal.js/css/theme/simple.css',
         highlight: 'darkula.css',
-        port: 0
+        port: 0,
+        footer: null
     }
 });
 debug(argv);
 
 if (!argv.help) {
-    start(argv.theme, argv.highlight, argv.port, argv.open);
+    start(argv.theme, argv.highlight, argv.port, argv.open, argv.footer);
 } else {
     usage();
 }
 
-function start(theme: string, highlight: string, port: number, open: boolean) {
+function start(theme: string, highlight: string, port: number, open: boolean, footer: string) {
     const dir = process.cwd();
 
     try {
@@ -40,7 +42,8 @@ function start(theme: string, highlight: string, port: number, open: boolean) {
             cwd: dir,
             title: path.basename(dir),
             theme: theme,
-            highlight: highlight
+            highlight: highlight,
+            footer: footer
         }).listen(port)
             .then(url => {
                 console.log('Presentation started on %s', url);
@@ -66,6 +69,7 @@ Options:
   --highlight:\t resolve to highlight.js style
   --port:\t serve from specified port
   --no-open:\t don't open presentation in browser
+  --footer:\t resolve to markup to be included in footer of every slide
 
   * Pick a highlight style from https://highlightjs.org/static/demo/
     or use the css file name from https://github.com/isagalaev/highlight.js/tree/master/src/styles
