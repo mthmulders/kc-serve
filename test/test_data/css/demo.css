@@ -1,6 +1,6 @@
 .footer {
     background-color: gray;
-    bottom: 1em;
+    bottom: 0;
     color: red;
     height: 3em;
     position: absolute; 
@@ -8,13 +8,9 @@
 }
 
 .footer span {
-    position: absolute; 
-    left: 50%;
-    bottom: 1em;
-}
-
-.footer img {
+    margin: auto;
     position: absolute;
-    left: 0;
-    bottom: 1em;
+    text-align: center;
+    top: 25%;
+    width: 100%;
 }
