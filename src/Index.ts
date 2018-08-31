@@ -33,6 +33,7 @@ export default function (options: Options): Server {
     let themePlugin = new ThemePlugin(options.theme);
     let imgPlugin = new ImgPlugin(options.cwd);
     const footerPlugin = new FooterPlugin(options.footer);
+    const footerTemplate = new FooterTemplate(footerPlugin);
 
     let index = new IndexTemplate(options.title,
         [
@@ -41,8 +42,7 @@ export default function (options: Options): Server {
             new HighlightTemplate(highlightPlugin.css),
             new CustomCssTemplate(cssPlugin, cssPlugin.path),
             new RevealTemplate.PdfScript(revealPlugin.path),
-            new SlidesTemplate(slidesPlugin, slidesPlugin.path),
-            new FooterTemplate(footerPlugin),
+            new SlidesTemplate(slidesPlugin, slidesPlugin.path, footerTemplate),
             new RevealTemplate.MainScript(revealPlugin.path)
         ]);
     let templatePlugin = new TemplatePlugin(index);

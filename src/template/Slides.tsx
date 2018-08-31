@@ -1,5 +1,6 @@
 import { Slide, SlideObject } from '../SlideObject';
 import { TemplatePart } from './Index';
+import FooterTemplate from './Footer';
 import * as elements from 'typed-html';
 import * as path from 'path';
 
@@ -9,7 +10,7 @@ export interface SlidesResolver {
 
 export default class implements TemplatePart {
     constructor(private resolver: SlidesResolver, 
-        private path: string) {
+        private path: string, private footer: FooterTemplate) {
     }
 
     public async body(): Promise<string> {
@@ -25,6 +26,7 @@ export default class implements TemplatePart {
             }
           }))}
         </div>
+        { await this.footer.body() }
       </div>;
     }
 
