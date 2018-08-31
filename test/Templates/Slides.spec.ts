@@ -1,12 +1,11 @@
 import { expect } from 'chai';
 import template from '../../src/template/Slides';
-import Footer from '../../src/template/Footer';
 import { Slide, SlideFolder, SlideObject } from '../../src/SlideObject';
 
 describe('Slides template', () => {
     let slides: SlideObject[];
     let resolver = { resolve: () => Promise.resolve(slides) };
-    const footer = new Footer({ resolve: () => Promise.resolve('') });
+    const footer = { resolve: () => Promise.resolve('') };
 
     it('renders reveal html', async () => {
         const result = await new template({ resolve: () => Promise.resolve([]) }, '/slides', footer).body();
